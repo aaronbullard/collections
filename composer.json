@@ -1,0 +1,25 @@
+{
+    "name": "aaronbullard/collections",
+    "description": "Generic class to make a collection of any object type.",
+    "authors": [
+        {
+            "name": "aaronbullard",
+            "email": "JABullard@aol.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0",
+        "illuminate/support": "4.2.*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "4.0.*",
+        "codeception/codeception": "dev-master",
+        "laracasts/testdummy": "1.*"
+        },
+    "autoload": {
+        "psr-0": {
+            "Aaronbullard\\Collections": "src/"
+        }
+    },
+    "minimum-stability": "stable"
+}
