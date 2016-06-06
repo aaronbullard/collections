@@ -1,0 +1,12 @@
+
+
+Code Coverage Report:    
+  2016-06-05 23:56:28    
+                         
+ Summary:                
+  Classes:  0.00% (0/1)  
+  Methods: 57.14% (8/14) 
+  Lines:   66.67% (24/36)
+
+\Aaronbullard\Collections::BaseCollection
+  Methods:  57.14% ( 8/14)   Lines:  66.67% ( 24/ 36)

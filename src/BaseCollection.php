@@ -6,7 +6,9 @@ use InvalidArgumentException;
 abstract class BaseCollection implements ArrayAccess, Countable, Iterator {
 
 	protected static $type;
+
 	protected $resolvedType;
+	
 	protected $container = [];
 
 	public function __construct(array $items)
@@ -18,34 +20,32 @@ abstract class BaseCollection implements ArrayAccess, Countable, Iterator {
 
 	protected function validateItems(array $items)
 	{
-		foreach( $items as $item )
-		{
+		foreach( $items as $item ){
 			$this->validateItem($item);
 		}
 	}
-	
+
 	protected function setDefaultType()
 	{
-		// Set default type
-		if( is_null(static::$type))
-		{
-			$self = get_class($this);
-			$this->resolvedType = substr($self, 0, strlen($self) - strlen('Collection'));
-		}else{
+		if(! is_null(static::$type)){
 			$this->resolvedType = static::$type;
+		}else{
+			$collectionName = get_class($this);
+			$class = substr($collectionName, 0, strlen($collectionName) - strlen('Collection'));
+			$this->resolvedType = $class;
 		}
 	}
 
 	protected function validateItem($item)
 	{
-		if( is_object($item) && get_class($item) === $this->resolvedType )
-		{
+		if( is_object($item) && get_class($item) === $this->resolvedType ){
 			return NULL;
 		}
-		if( gettype($item) === $this->resolvedType)
-		{
+
+		if( gettype($item) === $this->resolvedType){
 			return NULL;
 		}
+
 		throw new InvalidArgumentException("Collection can only accept objects of type " . $this->resolvedType);
 	}
 
@@ -53,12 +53,11 @@ abstract class BaseCollection implements ArrayAccess, Countable, Iterator {
 	public function offsetSet($offset, $value)
 	{
 		$this->validateItem( $value );
-		if (is_null($offset))
-		{
+
+		if (is_null($offset)){
 			$this->container[] = $value;
-		} 
-		else
-		{
+		}
+		else{
 			$this->container[$offset] = $value;
 		}
 	}
@@ -68,7 +67,7 @@ abstract class BaseCollection implements ArrayAccess, Countable, Iterator {
 		return isset($this->container[$offset]);
 	}
 
-	public function offsetUnset($offset) 
+	public function offsetUnset($offset)
 	{
 		unset($this->container[$offset]);
 	}
@@ -104,7 +103,7 @@ abstract class BaseCollection implements ArrayAccess, Countable, Iterator {
 	{
 		return next( $this->container );
 	}
-	\
+
 	public function valid()
 	{
 		return (key( $this->container ) !== NULL);
