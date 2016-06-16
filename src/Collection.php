@@ -3,12 +3,12 @@
 use ArrayAccess, Countable, Iterator;
 use InvalidArgumentException;
 
-abstract class BaseCollection implements ArrayAccess, Countable, Iterator {
+abstract class Collection implements ArrayAccess, Countable, Iterator {
 
 	protected static $type;
 
 	protected $resolvedType;
-	
+
 	protected $container = [];
 
 	public function __construct(array $items)

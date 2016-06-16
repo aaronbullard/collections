@@ -13,9 +13,9 @@ class MyClass {
 
 class NotMyClass {}
 
-class MyClassCollection extends BaseCollection {}
+class MyClassCollection extends Collection {}
 
-class BaseCollectionTest extends \PHPUnit_Framework_TestCase {
+class CollectionTest extends \PHPUnit_Framework_TestCase {
 
 	protected function createMyClasses($count)
 	{
